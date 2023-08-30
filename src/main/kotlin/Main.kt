@@ -26,7 +26,10 @@ fun main() {
                 when (action.toString().getAction()) {
                     Action.LEFT -> rotateAntiClockwise(currentPosition).also { currentPosition = it }
                     Action.RIGHT -> rotateClockwise(currentPosition).also { currentPosition = it }
-                    Action.FORWARD -> moveForward(currentPosition, maxX, maxY).also { if (it.isLost) return@breaking }
+                    Action.FORWARD -> moveForward(currentPosition, maxX, maxY).also {
+                        currentPosition = it
+                        if (it.isLost) return@breaking
+                    }
                     else -> {
                         // Error with input or new action we need to handle
                     }
